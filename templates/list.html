@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Sprinter 3000 </title>
+
+    <style>
+        td, th {
+            border: 3px solid #dddddd;
+            text-align: left;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h3>User Story Manager</h3>
+
+<button type="button" onclick="alert('Hello world!')">Add new User Story!</button>
+<a href="/story">
+   <input type="button" value="Visit Google" />
+</a>
+
+<table style="width:100%">
+    <tr>
+        <th>ID</th>
+        <th>Story Title</th>
+        <th>User Story</th>
+        <th>Acceptance Criteria</th>
+        <th>Business Value</th>
+        <th>Estimation</th>
+        <th>Status</th>
+    </tr>
+    {% for item in sprinters %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.story }}</td>
+        <td>{{ item.acceptance_criteria }}</td>
+        <td>{{ item.business_value }}</td>
+        <td>{{ item.estimation }}</td>
+        <td>{{ item.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
