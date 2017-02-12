@@ -61,8 +61,7 @@ def update_story():
     bu_va = request.form['business_value']
     est = request.form['estimation']
     sta = request.form['status']
-    user_story=Sprinter.update(id=id,
-                               title=title,
+    user_story=Sprinter.update(title=title,
                                story=story,
                                acceptance_criteria=ac_cr,
                                business_value=bu_va,

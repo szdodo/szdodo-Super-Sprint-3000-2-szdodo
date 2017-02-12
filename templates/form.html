@@ -4,7 +4,7 @@
     {% if user_story %}
         <title>Super Sprinter 3000 - Edit Story</title>
     {% else %}
-        <title>Super Sprinter 3000 - Add new Story {{id}} Kaki myfunc(id)</title>
+        <title>Super Sprinter 3000 - Add new Story</title>
     {% endif %}
 </head>
 <body>
@@ -27,14 +27,13 @@
                 <dd><input type="range" name="estimation" id="estimationin_id" value="20" min="0.5" max="40" step="0.5" oninput="estimationout_id.value = estimationin_id.value">
                 <output name="estimation_out" id="estimationout_id">{{user_story.estimation}}</output>
             <dt><label for="status">Status</label>
-                <dd><input list="statuses" name="status" value={{user_story.status}}>
-                <datalist id="statuses">
-                    <option value="Planning">
-                    <option value="To Do">
-                    <option value="In Progress">
-                    <option value="Review">
-                    <option value="Done">
-                </datalist>
+                <select name="status">
+                <option value="Planning">Planning</option>
+                <option value="To Do">To Do</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Review">Review</option>
+                <option value="Done">Done</option>
+                </select>
             <dd><br><input type="submit" value="Update">
         </dl>
     </form>
@@ -55,14 +54,13 @@
                 <dd><input type="range" name="estimation" id="estimation_in_id" value="20" min="0.5" max="40" step="0.5" oninput="estimation_out_id.value = estimation_in_id.value">
                 <output name="estimation_out" id="estimation_out_id">20</output>
             <dt><label for="status">Status</label>
-                <dd><input list="status" name="status">
-                <datalist id="status">
-                    <option value="Planning">
-                    <option value="To Do">
-                    <option value="In Progress">
-                    <option value="Review">
-                    <option value="Done">
-                </datalist>
+                <select name="status">
+                <option value="Planning">Planning</option>
+                <option value="To Do">To Do</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Review">Review</option>
+                <option value="Done">Done</option>
+                </select>
             <dd><br><input type="submit" value="Create">
         </dl>
     </form>
