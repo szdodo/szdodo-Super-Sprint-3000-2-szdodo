@@ -13,6 +13,7 @@
     <h3>User Story Manager - Edit Story</h3>
     <form action="{{ url_for('update_story') }}" method="post" class=update-story>
         <dl>
+            <input type="hidden" name="id" value={{user_story.id}}>
             <dt><label for="title">Story Title</label>:
                 <dd><input type=text size=30 name=title value={{user_story.title}}>
             <dt><label for="story">User Story</label>:
@@ -26,7 +27,7 @@
                 <dd><input type="range" name="estimation" id="estimationin_id" value="20" min="0.5" max="40" step="0.5" oninput="estimationout_id.value = estimationin_id.value">
                 <output name="estimation_out" id="estimationout_id">{{user_story.estimation}}</output>
             <dt><label for="status">Status</label>
-                <dd><input list="statuses" name="statuses" value={{user_story.status}}>
+                <dd><input list="statuses" name="status" value={{user_story.status}}>
                 <datalist id="statuses">
                     <option value="Planning">
                     <option value="To Do">
