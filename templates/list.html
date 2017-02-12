@@ -5,7 +5,12 @@
     <title>Super Sprinter 3000 </title>
 
     <style>
-        td, th {
+        th {
+            border: 3px solid #dddddd;
+            text-align: center;
+            padding: 10px;
+        }
+        td {
             border: 3px solid #dddddd;
             text-align: left;
             padding: 10px;
@@ -32,6 +37,8 @@
         <th>Business Value</th>
         <th>Estimation</th>
         <th>Status</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     {% for item in sprinters %}
     <tr>
@@ -42,14 +49,14 @@
         <td>{{ item.business_value }}</td>
         <td>{{ item.estimation }}</td>
         <td>{{ item.status }}</td>
-        <td><a href="/story/{{ item.id }}">
-                <input type="button" value="Edit" />
-            </a>
-            <a href="/delete/{{ item.id }}" >
-                <input type="button" value="Delete" />
+        <td align="right"><a href="/story/{{ item.id }}">
+                <input type="image" src="/static/pen.png" name="Edit" id="edit" style="width:30px;height:30px;" />
             </a>
         </td>
-
+        <td align="center"><a href="/delete/{{ item.id }}" >
+                <input type="image" src="/static/bin.png" name="Delete" id="delete" style="width:30px;height:30px;" />
+            </a>
+        </td>
     </tr>
     {% endfor %}
 </table>
