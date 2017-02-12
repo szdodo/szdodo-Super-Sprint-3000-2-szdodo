@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% if id != 0 %}
+        <title>Super Sprinter 3000 - Add new Story</title>
+    {% else %}
+        <title>Super Sprinter 3000 - Edit Story</title>
+    {% endif %}
+</head>
+<body>
+
+{% if id != 0 %}
+    <h3>User Story Manager - Add new Story</h3>
+    <form action="{{ url_for('add_story') }}" method=post class=add-story>
+        <dl>
+            <dt>Story Title:
+            <dd><input type=title size=30 name=title>
+            <dt>User Story:
+            <dd><textarea name=story rows=5 cols=40></textarea>
+            <dt>Acceptance Criteria:
+            <dd><textarea name=criteria rows=5 cols=40></textarea>
+            <dt>Business Value:
+            <dd><input type="range" name="value_in" id="value_in_id" value="750" min="100" max="1500" step="100" oninput="value_out_id.value = value_in_id.value">
+                <output name="value_out" id="value_out_id">750</output>
+            <dt>Estimation (h):
+            <dd><input type="range" name="estimation_in" id="estimation_in_id" value="20.5" min="0.5" max="40" step="0.5" oninput="estimation_out_id.value = estimation_in_id.value">
+                <output name="estimation_out" id="estimation_out_id">20.5</output>
+            <dt>Status
+            <dd><input list="status">
+                <datalist id="status">
+                    <option value="Planning">
+                    <option value="To Do">
+                    <option value="In Progress">
+                    <option value="Review">
+                    <option value="Done">
+                </datalist>
+            <dd><br><input type="submit" value="Create">
+        </dl>
+    </form>
+{% else %}
+    <h3>User Story Manager - Edit Story</h3>
+{% endif %}
+</body>
+</html>

@@ -18,12 +18,12 @@
 
 <h3>User Story Manager</h3>
 
-<button type="button" onclick="alert('Hello world!')">Add new User Story!</button>
-<a href="/story">
-   <input type="button" value="Visit Google" />
+<a href="/story/0">
+   <input type="button" value="Add a new User Story" />
 </a>
 
-<table style="width:100%">
+
+<table style="width:100%" id="myTable">
     <tr>
         <th>ID</th>
         <th>Story Title</th>
@@ -42,9 +42,19 @@
         <td>{{ item.business_value }}</td>
         <td>{{ item.estimation }}</td>
         <td>{{ item.status }}</td>
+        <td><a href="/story/{{ item.id }}">
+                <input type="button" value="Edit" />
+            </a>
+            <a href="/delete/{{ item.id }}" >
+                <input type="button" value="Delete" />
+            </a>
+        </td>
+
     </tr>
     {% endfor %}
 </table>
+
+
 
 </body>
 </html>
