@@ -2,29 +2,21 @@
 <html lang="en">
 <head>
     <title>Super Sprinter 3000 </title>
-
-    <style>
-        th {
-            border: 3px solid #dddddd;
-            text-align: center;
-            padding: 10px;
-        }
-        td {
-            border: 3px solid #dddddd;
-            text-align: left;
-            padding: 10px;
-        }
-    </style>
-
+    <link rel="stylesheet" type="text/css" href={{url_for('static', filename="css/bootstrap.min.css") }}/>
 </head>
 
 <body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/"><b>Super Sprinter 3000</b></a>
+      <ul class="nav navbar-nav navbar-right">
+          <li> <a href="/story/0" >Add a new User Story</a> </li>
+          <li><a href="/" >Home</a></li></ul>
+  </div>
+</nav>
 
 <h3>User Story Manager</h3>
 
-<a href="/story/0">
-   <input type="button" value="Add a new User Story" />
-</a>
 
 
 <table style="width:100%" id="myTable">

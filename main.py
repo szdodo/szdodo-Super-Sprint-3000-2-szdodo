@@ -15,7 +15,7 @@ app.config.update(dict(
 def index():
     return redirect(url_for('list'))
 
-@app.route('/and/list')
+@app.route('/list')
 def list():
     sprinters = Sprinter.select().order_by(Sprinter.id)
     return render_template("list.html", sprinters = sprinters)
