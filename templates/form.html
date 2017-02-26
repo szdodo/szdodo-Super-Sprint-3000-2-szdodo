@@ -15,83 +15,57 @@
     <a class="navbar-brand" href="/"><b>Super Sprinter 3000</b></a>
       <ul class="nav navbar-nav navbar-right">
           <li> <a href="/story/0" >Add a new User Story</a> </li>
-          <li><a href="/" >Home</a></li></ul>
   </div>
 </nav>
 
-{% if user_story %}
-    <h3>User Story Manager - Edit Story</h3>
-    <form action="{{ url_for('update_story') }}" method="post" class=update-story>
-        <dl>
-            <input type="hidden" name="id" value={{user_story.id}}>
-            <dt><label for="title">Story Title</label>:
-                <dd><input type=text size=30 name=title value={{user_story.title}}>
-            <dt><label for="story">User Story</label>:
-                <dd><textarea name=story rows=5 cols=40>{{user_story.story}}</textarea>
-            <dt><label for="criteria">Acceptance Criteria</label>:
-                <dd><textarea name=criteria rows=5 cols=40>{{user_story.acceptance_criteria}}</textarea>
-            <dt><label for="value">Business Value</label>:
-                <dd><input type="range" name="business_value" id="valuein_id" value="800" min="100" max="1500" step="100" oninput="valueout_id.value = valuein_id.value">
-                <output name="value_out" id="valueout_id">{{user_story.business_value}}</output>
-            <dt><label for="estimation">Estimation (h)</label>:
-                <dd><input type="range" name="estimation" id="estimationin_id" value="20" min="0.5" max="40" step="0.5" oninput="estimationout_id.value = estimationin_id.value">
-                <output name="estimation_out" id="estimationout_id">{{user_story.estimation}}</output>
-            <dt><label for="status">Status</label>
-                <select name="status">
-                <option value="Planning">Planning</option>
-                <option value="To Do">To Do</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Review">Review</option>
-                <option value="Done">Done</option>
-                </select>
-            <dd><br><input type="submit" value="Update">
-        </dl>
-    </form>
-{% else %}
+    {% if user_story %}
+    <h3>User Story Manager - Edit story</h3>
+    {% else %}
     <h3>User Story Manager - Add new Story</h3>
-    <form action="{{ url_for('add_story') }}" method="post" class=add-story>
+    {% endif %}
+
+    <form {%if user_story %} action="{{ url_for('update_story') }}" method="post" class=update-story {%else%} action="{{ url_for('add_story') }}" method="post" class=add-story {%endif%}>
+        <input type="hidden" name="id" value={{user_story.id}}>
         <label for="title">Story Title</label>:
-        <dl><div class="input-group">
-                <span class="input-group-addon" id="title">@</span>
-                <input type=text class="form-control" placeholder="Story Title"  size=30 name=title>
-            </div>
-            <label for="story">User Story</label>:
-            <div class="input-group">
-                <span class="input-group-addon" id="story">@</span>
-                <input type="text" name=story class="form-control" placeholder="User Story">
-            </div>
-            <label for="criteria">Acceptance Criteria</label>:
-            <div class="input-group">
-                <span class="input-group-addon" id="criteria">@</span>
-                <input type="text" name=criteria rows=5 cols=40 class="form-control" placeholder="Acceptance Criteria">
-            </div>
-            <label for="value">Business Value</label>:
-            <div class="input-group">
-                <span class=input-group-addon" id="value"></span>
-                <input type="range" name="business_value" id="value_in_id" value="800" min="100" max="1500" step="100" oninput="value_out_id.value = value_in_id.value">
-                <output name="value_out" id="value_out_id">800</output>
-            </div>
-            <label for="estimation">Estimation (h)</label>:
-            <div class="input-group">
-                <span class=input-group-addon" id="estimation"></span>
-                <input type="range" name="estimation" id="estimation_in_id" value="20" min="0.5" max="40" step="0.5" oninput="estimation_out_id.value = estimation_in_id.value">
-                <output name="estimation_out" id="estimation_out_id">20</output>
-            </div>
-            <label for="status">Status</label>
-            <div class="input-goup">
-                <span class=input-group-addon" id="status"></span>
-                <select name="status">
+        <div class="input-group">
+            <span class="input-group-addon" id="title">@</span>
+            <input type=text class="form-control" size=30 name=title {% if user_story.title %} value={{user_story.title}} {% else %} placeholder="Story Title" {% endif %}>
+        </div>
+        <label for="story">User Story</label>:
+        <div class="input-group">
+            <span class="input-group-addon" id="story">@</span>
+            <input type="text" name=story class="form-control" {% if user_story.story %} value={{user_story.story}} {% else %} placeholder="User Story" {% endif %}>
+        </div>
+        <label for="criteria">Acceptance Criteria</label>:
+        <div class="input-group">
+            <span class="input-group-addon" id="criteria">@</span>
+            <input type="text" name=criteria rows=5 cols=40 class="form-control" {% if user_story.acceptance_criteria %} value={{user_story.acceptance_criteria}} {% else %} placeholder="Acceptance Criteria" {% endif %}>
+        </div>
+        <label for="value">Business Value</label>:
+        <div class="input-group">
+            <span class=input-group-addon" id="value"></span>
+            <input type="range" name="business_value" id="value_in_id" value="800" min="100" max="1500" step="100" oninput="value_out_id.value = value_in_id.value">
+            <output name="value_out" id="value_out_id">{% if user_story %} {{user_story.business_value}} {% else %} 800 {% endif %}</output>
+        </div>
+        <label for="estimation">Estimation (h)</label>:
+        <div class="input-group">
+            <span class=input-group-addon" id="estimation"></span>
+            <input type="range" name="estimation" id="estimation_in_id" value="20" min="0.5" max="40" step="0.5" oninput="estimation_out_id.value = estimation_in_id.value">
+            <output name="estimation_out" id="estimation_out_id">{% if user_story %} {{user_story.estimation}} {% else %} 20 {% endif %}</output>
+        </div>
+        <label for="status">Status</label>
+        <div class="input-goup">
+            <span class=input-group-addon" id="status"></span>
+            <select name="status">
                 <option value="Planning">Planning</option>
                 <option value="To Do">To Do</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Review">Review</option>
                 <option value="Done">Done</option>
-                </select>
-            </div>
-            <br><input type="submit" value="Create">
-        </dl>
+            </select>
+        </div>
+        <br><input type="submit" {%if user_story%} value="Update" {%else%} value="Create" {%endif%}>
     </form>
-{% endif %}
 
 
 </body>
